@@ -1,9 +1,24 @@
 from flask import Flask, request, jsonify
 import joblib
 import torch
+import os
+import gdown
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
 
 app = Flask(__name__)
+
+# -----------------------------
+# Download BERT model from Google Drive
+# -----------------------------
+if not os.path.exists("bert_model/model.safetensors"):
+    os.makedirs("bert_model", exist_ok=True)
+    print("Downloading BERT model from Google Drive...")
+    gdown.download(
+        "https://drive.google.com/uc?id=1YePgS3o6fKu_noegQwpkhn3PEGBMGb7A",
+        "bert_model/model.safetensors",
+        quiet=False
+    )
+    print("Download complete!")
 
 # -----------------------------
 # Load SVM
@@ -70,4 +85,19 @@ def predict():
 # Run app
 # -----------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
+```
+
+---
+
+## Step 2 — Update `requirements.txt`
+
+Open `requirements.txt` and make sure it has exactly this:
+```
+flask
+joblib
+torch
+transformers
+scikit-learn
+gdown

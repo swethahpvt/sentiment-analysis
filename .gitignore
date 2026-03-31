@@ -1,4 +1,11 @@
+# Large datasets
 Reviews.csv
+
+# Large model files
 bert_model/model.safetensors
+
+# Optional large file types
 *.csv
 *.safetensors
+*.pt
+*.bin

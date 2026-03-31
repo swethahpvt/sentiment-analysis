@@ -11,8 +11,9 @@ if not os.path.exists("bert_model/model.safetensors"):
     os.makedirs("bert_model", exist_ok=True)
     print("Downloading BERT model from Google Drive...")
     gdown.download(
-        "https://drive.google.com/uc?id=1YePgS3o6fKu_noegQwpkhn3PEGBMGb7A",
-        "bert_model/model.safetensors",
+        id="1YePgS3o6fKu_noegQwpkhn3PEGBMGb7A",
+        output="bert_model/model.safetensors",
+        fuzzy=True,
         quiet=False
     )
     print("Download complete!")

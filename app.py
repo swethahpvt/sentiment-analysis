@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import joblib
 import torch
 import os
 import gdown
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
- 
+
 app = Flask(__name__)
+CORS(app)
  
 svm_model = None
 vectorizer = None
